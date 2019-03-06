@@ -38,6 +38,7 @@ const solution = (x) => x * (x + 1) / 2 >= 100;
 const arrayOfNumbers = new Array(100);
 
 function eggDrop() {
+  // Start at 0
   // Run solution sequentially until we get our first true...return n when true
   for (let i = 0; i<arrayOfNumbers.length; i++) {
     const solver = solution(i);
