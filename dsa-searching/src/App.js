@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import dataset from './scratch';
+import dataset from './dataset';
 
 // const initialstate = dataset;
 
@@ -8,19 +8,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0
+      found: true,
+      tries: 0
     }
     this.input = React.createRef()
   }
   linearSearch() {
     const num = Number(this.input.current.value);
-    this.setState({counter: 0});
-    for (let i=0; i<dataset.length; i++) {
+    this.setState({ tries: 0 });
+    let counter = 1;
+    for (let i = 0; i < dataset.length; i++) {
       if (dataset[i] == num) {
+        this.setState({ tries: counter, found: true });
         return;
       }
-      this.setState({counter: this.state.counter + 1})
+      counter++;
     }
+    this.setState({ tries: dataset.length, found: false });
   }
   render() {
     return (
@@ -30,7 +34,7 @@ class App extends Component {
         <button className='linear-search' onClick={() => this.linearSearch()}>Linear</button>
         <button className='binary-search'>Binary</button>
         <div className='results'>
-          {this.state.counter}
+          {!(this.state.found) ? 'Not in dataset.' : ''} The number of tries was {this.state.tries}
         </div>
       </div>
     );
