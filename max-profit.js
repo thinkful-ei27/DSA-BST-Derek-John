@@ -23,20 +23,12 @@ const diffs = sharePrices.reduce((acc, cv, i) => {
   return acc;
 }, []);
 
-// Algorithm should be as simple as:
-// Start with nothing
-// If cumulative difference is positive, buy.
-// If nothing, and cumulative difference is negative, do nothing
-// If we have bought, and cumulative difference is positive, do nothing
-// If we have bought, and cumulative difference is negative, sell
-// Return max profit at the end
-
 // Input: Array
 // Output: Console log diary of what we did
 // Recursive input: Difference between current and next
 // Recursive Output: Console log of day and action
 
-function maxProfit(arr, profit=0, buySellHold=0, i=0) {
+function maxProfit(arr, profit=0, i=0) {
   // Base case
   if (!(arr[i+1])) {
     console.log(`Our final, fat profit is ${profit}`);
@@ -46,11 +38,11 @@ function maxProfit(arr, profit=0, buySellHold=0, i=0) {
 
   if (difference < 0) {
     console.log(`On day ${i+1}, we are selling for ${difference}`);
-    return maxProfit(arr, profit, buySellHold, i+1);
+    return maxProfit(arr, profit, i+1);
   } else {
     console.log(`On day ${i+1}, we are buying for ${difference}...sweet!`);
     profit = profit + difference;
-    return maxProfit(arr, profit, buySellHold, i+1);
+    return maxProfit(arr, profit, i+1);
   }
 }
 
