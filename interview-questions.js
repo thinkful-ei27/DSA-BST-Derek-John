@@ -157,4 +157,6 @@ const postOrder = node => {
     console.log(node.value);
   }
 };
-postOrder(bst);
+// postOrder(bst);
+
+module.exports = BinarySearchTree;
